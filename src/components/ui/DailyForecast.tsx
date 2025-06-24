@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import { WeatherIcon } from "./weatherIcon";
 export function DailyForecast({ city, cnt, setCurrMinMax, dateNow }: { city: City, cnt: number, setCurrMinMax: React.Dispatch<React.SetStateAction<{ min: number, max: number }>>, dateNow: Date }) {
     const [dailyForecast, setDailyForecast] = useState<WeatherForecastResponse | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [err, setErr] = useState<string>("");
     useEffect(() => {
         const fetchDailyWeatherData = async () => {
             try {
@@ -19,7 +17,6 @@ export function DailyForecast({ city, cnt, setCurrMinMax, dateNow }: { city: Cit
                 }
             } catch (err) {
                 setCurrMinMax({ min: -Infinity, max: Infinity });
-                setErr("Error Fetching the daily Forecast.");
                 console.error("Error fetching the daily Forecast: ", err);
             }
         }
@@ -71,12 +68,11 @@ export function DailyForecast({ city, cnt, setCurrMinMax, dateNow }: { city: Cit
         }
     }
     return (
-    <div className="p-1 h-full flex-col flex items-center *:w-full gap-1.5">
-        <h2 className="hidden sm:inline font-semibold text-[#f8e57a] text-xl text-center ">7 Days Forecast</h2>
-        <div className="flex flex-col max-h-30 md:max-h-full md:h-full overflow-y-scroll overflow-x-hidden no-scrollbar">
-            {dailyForecast && createListOfForecast()}
+        <div className="p-1 h-full flex-col flex items-center *:w-full gap-1.5">
+            <h2 className="hidden sm:inline font-semibold text-[#f8e57a] text-xl text-center ">7 Days Forecast</h2>
+            <div className="flex flex-col max-h-30 md:max-h-full md:h-full overflow-y-scroll overflow-x-hidden no-scrollbar">
+                {dailyForecast && createListOfForecast()}
+            </div>
         </div>
-    </div>
-
     );
 }
