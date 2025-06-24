@@ -1,7 +1,7 @@
 import axios, { type AxiosResponse } from 'axios';
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY ;
 const BASE_URL = import.meta.env.VITE_WEATHER_API_URL || 'https://api.openweathermap.org/data/2.5';
-const GEO_BASE_URL = "http://api.openweathermap.org/geo/1.0";
+const GEO_BASE_URL = "https://api.openweathermap.org/geo/1.0";
 
 export const fetchUVInd = (lon :number, lat:number) =>{
     return axios.get(`${BASE_URL}/uvi`,{
